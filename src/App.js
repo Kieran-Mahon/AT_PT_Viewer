@@ -7,7 +7,7 @@ import Train from './pages/Train';
 import Ferry from './pages/Ferry';
 import Routes from './pages/Routes';
 
-function App() {
+export default function App() {
   const [activePage, setActivePage] = useState('home');
 
   const renderPage = () => {
@@ -38,5 +38,3 @@ function App() {
     </>
   );
 }
-
-export default App;

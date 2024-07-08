@@ -22,17 +22,25 @@ const Filter = React.forwardRef(({ children, style, className }, ref) => {
   },
 );
 
-export default function RouteDropdown({ dropdownSelectHandle, routes }) {
+export default function RouteDropdown({dropdownSelectHandle, routes, routeIDs}) {
+  //Build dropdown items from route details
+  let dropdowns = [];
+  for (let i = 0; i < routeIDs.length; i++) {
+    dropdowns.push(
+      <Dropdown.Item eventKey={routes[routeIDs[i]].route_short_name} key={routeIDs[i]}>
+        {routes[routeIDs[i]].route_short_name}
+      </Dropdown.Item>
+    );
+  }
+
   return (
+    <>
       <Dropdown onSelect={dropdownSelectHandle}>
         <Dropdown.Toggle id="route-select-dropdown">Select Route</Dropdown.Toggle>
         <Dropdown.Menu as={Filter}> 
-          {routes.map(route => (
-            <Dropdown.Item eventKey={route.id} key={route.id}>
-              {route.attributes.route_short_name}
-            </Dropdown.Item>
-          ))}
+          {dropdowns}
         </Dropdown.Menu>
       </Dropdown>
+    </>
   );
 }

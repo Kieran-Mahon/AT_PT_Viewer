@@ -9,7 +9,8 @@ import Routes from './pages/Routes';
 
 export default function App() {
   //Get list of routes
-  const [routes, setRoutes] = useState([]);
+  const [routes, setRoutes] = useState([]); //Route details
+  const [routeIDs, setRouteIDs] = useState([]); //Route IDs
   useEffect(() => {
     fetch('https://api-proxy.auckland-cer.cloud.edu.au/AT/gtfs/v3/routes', {
       method: 'GET',
@@ -21,10 +22,13 @@ export default function App() {
     .then(response => response.json())
     .then(response => {
       let tempRoutes = [];
+      let tempRouteIDs = [];
       for (var route of response.data) {
         tempRoutes[route.id] = route.attributes;
+        tempRouteIDs.push(route.id);
       }
-      setRoutes(tempRoutes)
+      setRoutes(tempRoutes);
+      setRouteIDs(tempRouteIDs);
     })
     .catch(error => console.log(error))
   }, []);
@@ -42,7 +46,7 @@ export default function App() {
       case 'ferry':
         return <Ferry/>;
       case 'routes':
-        return <Routes/>;
+        return <Routes routes={routes} routeIDs={routeIDs}/>;
       default:
         return <Info/>;
     }

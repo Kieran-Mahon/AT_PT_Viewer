@@ -4,19 +4,23 @@ import 'leaflet/dist/leaflet.css';
 import { MapContainer } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
 
-import Markers from './Markers';
-
-
-export default function Map({routes, refreshTime}) {
+export default function Map({passedFunction}) {
   const mapOptions = {
     center: [-36.8747, 174.7739],
     zoom: 12,
     attributionControl: false,
   };
+  const passedResult = passedFunction();
   return (
-    <MapContainer {...mapOptions} style={{ height: '700px' }}>
+    <MapContainer {...mapOptions} style={{ height: '45vw' }}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-      <Markers routes={routes} refreshTime={refreshTime}/>
+      {passedResult}
     </MapContainer>
   );
+  /*  Google Map Layer
+      <TileLayer
+        url={`http://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}`}
+        subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+      />
+  */
 };

@@ -1,5 +1,5 @@
-import { DivIcon } from 'leaflet'
-import { ICONSIZE, POPUPANCHOR } from './MarkerIconsSettings'
+import { DivIcon } from 'leaflet';
+import { ICONSIZE, POPUPANCHOR } from './MarkerIconsSettings';
 
 import 'leaflet/dist/leaflet.css';
 import './MarkerIcons.css';

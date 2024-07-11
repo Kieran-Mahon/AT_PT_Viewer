@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-import { Marker } from 'react-leaflet/Marker'
-import { Circle } from 'react-leaflet'
+import { Marker, Circle } from 'react-leaflet/';
 
 import BusIcon from '../MarkerIcons/BusIcon';
 import TrainIcon from '../MarkerIcons/TrainIcon';
 import FerryIcon from '../MarkerIcons/FerryIcon';
 import VehiclePopUp from './VehiclePopUp';
 
-export default function Markers({routes, refreshTime, routeFilter, hideInvalid = true}) {
+export default function Markers({ routes, refreshTime, routeFilter, hideInvalid = true }) {
   const [vehicles, setVehicles] = useState(null);
 
   useEffect(() => {
+    //Fetch vehicle locations data from AT and save it to the vehicle state
     const fetchData = async () => {
       try {
         const response = await fetch('https://api-proxy.auckland-cer.cloud.edu.au/AT/realtime/legacy/vehiclelocations', {
@@ -40,7 +40,7 @@ export default function Markers({routes, refreshTime, routeFilter, hideInvalid =
     return () => clearInterval(intervalId);
   }, []);
 
-  //Make vehicle markers if there are vehicles found
+  //Make vehicle markers if vehicles are found
   let markers = vehicles;
   if (markers) {
 
@@ -63,45 +63,57 @@ export default function Markers({routes, refreshTime, routeFilter, hideInvalid =
       });
     }
 
+    //Make markers for the vehicles for the map
+    let keyIndex = 0;
     markers = markers.map(vehicle => {
       let colour;
       let vehicleData = vehicle.vehicle;
+
+      //Increase the array index
+      keyIndex++;
+
+      //Only make a vehicle marker for vehicle with trips
       if (vehicleData.trip) {
         let route = routes[vehicleData.trip.route_id];
         if (route) {
-          if (route.route_type === 2) {
+          
+          //Check the type of vehicle
+          if (route.route_type === 2) { //Train
             colour = "yellow";
+
             return (
               <Marker
-                key={vehicle.id}
+                key={keyIndex}
                 position={[vehicleData.position.latitude, vehicleData.position.longitude]}
                 icon={TrainIcon(colour)}
               >
-                <VehiclePopUp route={route} vehicleData={vehicleData}/>
+                <VehiclePopUp route={route} vehicleData={vehicleData} />
               </Marker>
             );
 
-          } else if ((route.route_type === 3) || (route.route_type === 712)) {
+          } else if ((route.route_type === 3) || (route.route_type === 712)) { //Bus (including school bus)
             colour = "lime";
+
             return (
               <Marker
-                key={vehicle.id}
+                key={keyIndex}
                 position={[vehicleData.position.latitude, vehicleData.position.longitude]}
                 icon={BusIcon(colour)}
               >
-                <VehiclePopUp route={route} vehicleData={vehicleData}/>
+                <VehiclePopUp route={route} vehicleData={vehicleData} />
               </Marker>
             );
 
-          } else if (route.route_type === 4) {
+          } else if (route.route_type === 4) { //Ferry
             colour = "aqua";
+
             return (
               <Marker
+                key={keyIndex}
                 position={[vehicleData.position.latitude, vehicleData.position.longitude]}
                 icon={FerryIcon(colour)}
-                key={vehicle.id}
               >
-                <VehiclePopUp route={route} vehicleData={vehicleData}/>
+                <VehiclePopUp route={route} vehicleData={vehicleData} />
               </Marker>
             );
           }
@@ -116,6 +128,7 @@ export default function Markers({routes, refreshTime, routeFilter, hideInvalid =
       //Return a circle at the location of the invalid vehicle
       return (
         <Circle
+          key={keyIndex}
           center={[vehicle.vehicle.position.latitude, vehicle.vehicle.position.longitude]}
           radius={20}
         />

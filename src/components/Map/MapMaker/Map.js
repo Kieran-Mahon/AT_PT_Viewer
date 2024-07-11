@@ -1,20 +1,20 @@
 import React from 'react';
 
 import 'leaflet/dist/leaflet.css';
-import { MapContainer } from 'react-leaflet/MapContainer'
-import { TileLayer } from 'react-leaflet/TileLayer'
+import { MapContainer } from 'react-leaflet/MapContainer';
+import { TileLayer } from 'react-leaflet/TileLayer';
 
-export default function Map({passedFunction}) {
+export default function Map({ passedFunction }) {
   const mapOptions = {
     center: [-36.8747, 174.7739],
     zoom: 12,
     attributionControl: false,
   };
-  const passedResult = passedFunction();
+
   return (
-    <MapContainer {...mapOptions} style={{ height: '45vw' }}>
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-      {passedResult}
+    <MapContainer {...mapOptions} style={{ height: '700px' }}>
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      {passedFunction()}
     </MapContainer>
   );
   /*  Google Map Layer

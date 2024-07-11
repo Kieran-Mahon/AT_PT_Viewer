@@ -3,31 +3,38 @@ import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 
 import 'leaflet/dist/leaflet.css';
+import RouteDropdown from '../components/Dropdowns/RouteDropdown';
 import Map from '../components/Map/MapMaker/Map';
 import Markers from '../components/Map/MapMaker/Markers';
-import RouteDropdown from '../components/Dropdowns/RouteDropdown';
+import RouteMapper from '../components/Map/MapMaker/RouteMapper';
 
-export default function Routes({routes, routeIDs}) {
-  const [selectedRoute, setSelectedRoute] = useState([]);
+export default function Routes({ routes, routeIDs }) {
+  const [routeVisual, setRouteVisual] = useState("");
+  const [showMap, setShowMap] = useState(false);
 
   //Function called within the map function to inject the markers
-  const getMarkers = () => {
-    const filter = selectedRoute;
-    return <Markers routes={routes} refreshTime={20000} routeFilter={filter}/>;
+  const injectRouteVisual = () => {
+    return routeVisual;
   };
 
   //Dropdown select handle
   const dropdownSelectHandle = (eventKey) => {
-    setSelectedRoute([eventKey]);
+    setRouteVisual(
+      <>
+        <Markers routes={routes} refreshTime={20000} routeFilter={[eventKey]} />
+        <RouteMapper routeRef={[eventKey]} />
+      </>
+    );
+    setShowMap(true);
   };
 
   return (
     <>
       <Container>
-        <div>
-          <RouteDropdown dropdownSelectHandle={dropdownSelectHandle} routes={routes} routeIDs={routeIDs}/>
-        </div>
-        <Map passedFunction={getMarkers}/>
+        <RouteDropdown dropdownSelectHandle={dropdownSelectHandle} routes={routes} routeIDs={routeIDs} />
+      </Container>
+      <Container>
+        <Map passedFunction={injectRouteVisual} />
       </Container>
     </>
   );

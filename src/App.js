@@ -38,27 +38,25 @@ export default function App() {
   const renderPage = () => {
     switch (activePage) {
       case 'info':
-        return <Info/>;
+        return <Info />;
       case 'global':
-        return <Global routes={routes}/>;
+        return <Global routes={routes} />;
       case 'train':
-        return <Train/>;
+        return <Train />;
       case 'ferry':
-        return <Ferry/>;
+        return <Ferry />;
       case 'routes':
-        return <Routes routes={routes} routeIDs={routeIDs}/>;
+        return <Routes routes={routes} routeIDs={routeIDs} />;
       default:
-        return <Info/>;
+        return <Info />;
     }
   };
 
   return (
     <>
       <div className="App">
-        <AppNavBar setActivePage={setActivePage}/>
+        <AppNavBar setActivePage={setActivePage} />
         {renderPage()}
-
-
       </div>
     </>
   );

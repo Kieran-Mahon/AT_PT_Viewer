@@ -1,9 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Form from 'react-bootstrap/Form';
+import { Dropdown, Form } from 'react-bootstrap';
 
-const Filter = React.forwardRef(({ children, style, className }, ref) => {
+const filter = React.forwardRef(({ children, style, className }, ref) => {
     const [value, setValue] = useState('');
     return (
       <div ref={ref} style={style} className={className}>
@@ -22,7 +21,7 @@ const Filter = React.forwardRef(({ children, style, className }, ref) => {
   },
 );
 
-export default function RouteDropdown({dropdownSelectHandle, routes, routeIDs}) {
+export default function RouteDropdown({ dropdownSelectHandle, routes, routeIDs }) {
   //Build dropdown items from route details
   let dropdowns = [];
   for (let i = 0; i < routeIDs.length; i++) {
@@ -37,7 +36,7 @@ export default function RouteDropdown({dropdownSelectHandle, routes, routeIDs}) 
     <>
       <Dropdown onSelect={dropdownSelectHandle}>
         <Dropdown.Toggle id="route-select-dropdown">Select Route</Dropdown.Toggle>
-        <Dropdown.Menu as={Filter}> 
+        <Dropdown.Menu style={{zIndex: 1001}} as={filter}> 
           {dropdowns}
         </Dropdown.Menu>
       </Dropdown>

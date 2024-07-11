@@ -1,7 +1,7 @@
 import React from 'react';
-import { Popup } from 'react-leaflet/Popup'
+import { Popup } from 'react-leaflet/Popup';
 
-export default function VehiclePopUp({route, vehicleData}) {
+export default function VehiclePopUp({ route, vehicleData }) {
   return (
     <Popup>
       Route: {route.route_long_name}

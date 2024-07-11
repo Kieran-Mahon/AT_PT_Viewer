@@ -5,17 +5,17 @@ import 'leaflet/dist/leaflet.css';
 import Map from '../components/Map/MapMaker/Map';
 import Markers from '../components/Map/MapMaker/Markers';
 
-export default function Global({routes}) {
-  const getMarkers = () => {
-    const filter = []
-    return <Markers routes={routes} refreshTime={20000} routeFilter={filter}/>;
+export default function Global({ routes }) {
+  const injectBusMarkers = () => {
+    const filter = []; //Empty filter
+    return <Markers routes={routes} refreshTime={20000} routeFilter={filter} />;
   };
 
   return (
     <>
       <Container>
         <p></p>
-        <Map passedFunction={getMarkers}/>
+        <Map passedFunction={injectBusMarkers} />
       </Container>
     </>
   );

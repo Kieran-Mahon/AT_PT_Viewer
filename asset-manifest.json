@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AT_PT_Viewer/static/css/main.0a195373.css",
+    "main.js": "/AT_PT_Viewer/static/js/main.bc77ebc0.js",
+    "index.html": "/AT_PT_Viewer/index.html",
+    "main.0a195373.css.map": "/AT_PT_Viewer/static/css/main.0a195373.css.map",
+    "main.bc77ebc0.js.map": "/AT_PT_Viewer/static/js/main.bc77ebc0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0a195373.css",
+    "static/js/main.bc77ebc0.js"
+  ]
+}

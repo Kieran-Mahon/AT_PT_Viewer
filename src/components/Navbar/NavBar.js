@@ -18,3 +18,10 @@ export default function AppNavBar({ setActivePage }) {
     </>
   );
 }
+/*
+            Nav.Link onClick={() => setActivePage('info')}>Info</Nav.Link>
+            <Nav.Link onClick={() => setActivePage('global')}>Global View</Nav.Link>
+            <Nav.Link onClick={() => setActivePage('train')}>Train</Nav.Link>
+            <Nav.Link onClick={() => setActivePage('ferry')}>Ferry</Nav.Link>
+            <Nav.Link onClick={() => setActivePage('routes')}>Routes</Nav.Link>
+*/

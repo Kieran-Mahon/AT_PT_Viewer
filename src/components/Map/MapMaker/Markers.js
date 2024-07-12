@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { Marker, Circle } from 'react-leaflet/';
+import { Marker } from 'react-leaflet/Marker';
+import { Circle } from 'react-leaflet'
 
 import BusIcon from '../MarkerIcons/BusIcon';
 import TrainIcon from '../MarkerIcons/TrainIcon';

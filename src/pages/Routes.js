@@ -31,9 +31,9 @@ export default function Routes({ routes, routeIDs }) {
   return (
     <>
       <Container>
-        <RouteDropdown dropdownSelectHandle={dropdownSelectHandle} routes={routes} routeIDs={routeIDs} />
-      </Container>
-      <Container>
+        <div style={{ padding: '10px' }}>
+          <RouteDropdown dropdownSelectHandle={dropdownSelectHandle} routes={routes} routeIDs={routeIDs} />
+        </div>
         <Map passedFunction={injectRouteVisual} />
       </Container>
     </>

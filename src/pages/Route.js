@@ -34,7 +34,7 @@ export default function Routes({ routes, routeIDs }) {
         <div style={{ padding: '10px' }}>
           <RouteDropdown dropdownSelectHandle={dropdownSelectHandle} routes={routes} routeIDs={routeIDs} />
         </div>
-        <Map passedFunction={injectRouteVisual} />
+        {showMap && <Map passedFunction={injectRouteVisual} />}
       </Container>
     </>
   );

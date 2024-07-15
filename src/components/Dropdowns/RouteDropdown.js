@@ -14,7 +14,7 @@ const filter = React.forwardRef(({ children, style, className }, ref) => {
           value={value}
         />
         <ul className="list-unstyled" style={{ maxHeight: "200px", overflowY: "auto" }}>
-          {React.Children.toArray(children).filter((child) => !value || child.props.children.toLowerCase().startsWith(value))}
+          {React.Children.toArray(children).filter((child) => !value || child.props.children.toUpperCase().startsWith(value.toUpperCase()))}
         </ul>
       </div>
     );

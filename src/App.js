@@ -5,7 +5,7 @@ import Info from './pages/Info';
 import Global from './pages/Global';
 import Train from './pages/Train';
 import Ferry from './pages/Ferry';
-import Routes from './pages/Routes';
+import Route from './pages/Route';
 
 export default function App() {
   //Get list of routes
@@ -34,7 +34,7 @@ export default function App() {
   }, []);
 
   //Active page control
-  const [activePage, setActivePage] = useState('home');
+  const [activePage, setActivePage] = useState('info');
   const renderPage = () => {
     switch (activePage) {
       case 'info':
@@ -45,8 +45,8 @@ export default function App() {
         return <Train />;
       case 'ferry':
         return <Ferry />;
-      case 'routes':
-        return <Routes routes={routes} routeIDs={routeIDs} />;
+      case 'route':
+        return <Route routes={routes} routeIDs={routeIDs} />;
       default:
         return <Info />;
     }

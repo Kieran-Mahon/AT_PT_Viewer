@@ -1,12 +1,14 @@
 import React from 'react';
-import { Popup } from 'react-leaflet/Popup';
+import { Tooltip } from 'react-leaflet/Tooltip';
 
 export default function VehiclePopUp({ route, vehicleData }) {
   return (
-    <Popup>
+    <Tooltip>
+      <b>{vehicleData.vehicle.label}</b>
+      <br/>
       Route: {route.route_long_name}
       <br/>
       Speed: {Math.round(vehicleData.position.speed)} km/h
-    </Popup>
+    </Tooltip>
   );
 };

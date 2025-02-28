@@ -22,6 +22,18 @@ const filter = React.forwardRef(({ children, style, className }, ref) => {
 );
 
 export default function RouteDropdown({ dropdownSelectHandle, routes, routeIDs }) {
+  //Currently selected option
+  const [currentSelected, setCurrentSelected] = useState("");
+  
+  //Inject the selection text grabber
+  const injectedSelectHandle = (eventKey) => {
+    //Update selected value
+    setCurrentSelected(eventKey);
+
+    //Pass the value to the handle
+    dropdownSelectHandle(eventKey);
+  }
+
   //Build dropdown items from route details
   let dropdowns = [];
   for (let i = 0; i < routeIDs.length; i++) {
@@ -34,8 +46,14 @@ export default function RouteDropdown({ dropdownSelectHandle, routes, routeIDs }
 
   return (
     <>
-      <Dropdown onSelect={dropdownSelectHandle}>
-        <Dropdown.Toggle id="route-select-dropdown">Select Route</Dropdown.Toggle>
+      <Dropdown onSelect={injectedSelectHandle}>
+        <Dropdown.Toggle id="route-select-dropdown" style={{width: '135px'}}>
+          {currentSelected === "" ? (
+            'Select Route'
+          ) : (
+            currentSelected
+          )}
+        </Dropdown.Toggle>
         <Dropdown.Menu style={{zIndex: 1001}} as={filter}> 
           {dropdowns}
         </Dropdown.Menu>

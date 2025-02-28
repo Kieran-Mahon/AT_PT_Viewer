@@ -39,7 +39,7 @@ export default function Markers({ routes, refreshTime, routeFilter, hideInvalid 
 
     //Clean up the interval on component unmount
     return () => clearInterval(intervalId);
-  }, []);
+  }, [refreshTime]);
 
   //Make vehicle markers if vehicles are found
   let markers = vehicles;

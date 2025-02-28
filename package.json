@@ -1,6 +1,6 @@
 {
   "name": "at_pt_viewer",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "homepage": "https://kieran-mahon.github.io/AT_PT_Viewer/",
   "private": true,
   "dependencies": {
